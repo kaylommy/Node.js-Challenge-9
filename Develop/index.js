@@ -8,6 +8,7 @@ const questions = [
         type: 'input',
         message: 'What is your Github username?',
         name: 'github',
+        // I added 'validate:' to the questions in this array that are required to be answered for a quality README. Without validate it would just move on to the next question.
         validate: github => {
             if (github) {
                 return true;
@@ -41,14 +42,32 @@ const questions = [
         }
     },
     {
-        type: 'input',
-        message: 'Please enter any installation instructions',
-        name: 'installationInst',
+        type: 'confirm',
+        message: 'Are there any installation instructions?',
+        name: 'installQuestion',
+
     },
     {
         type: 'input',
+        message: 'Please enter any installation instructions',
+        name: 'installationInst',
+        // 'when:' is added so if the question above is answered yes it will run this question if there is a no answer it will skip this question since it will not apply.
+        when: function(answers) {
+            return answers.installQuestion;
+        }
+    },
+    {
+        type: 'confirm',
         message: 'Any usage information?',
         name: 'usageInfo',
+    },
+    {
+        type: 'input',
+        message: 'Please enter any usage information',
+        name: 'usage',
+        when: function(answers) {
+            return answers.usageInfo;
+        }
     },
     {
         type: 'list',
@@ -57,13 +76,32 @@ const questions = [
         choices: ['Apache', 'GNU General Public', 'MIT', 'BSD 2-Clause', 'BSD 3-Clause', 'None'],
     },
     {
-        type: 'input',
-        message: 'Add below any contributors to your project',
-        name: 'contributors',
+        type: 'confirm',
+        message: 'Are there any contributors to your project?',
+        name: 'contributorsQuestion',
     },
     {
         type: 'input',
-    }
+        message: 'Add below any contributors to your project',
+        name: 'contributors',
+        when: function(answers) {
+            return answers.contributorsQuestion;
+        }
+    },
+    {
+        type: 'confirm',
+        message: 'Any testing instructions?',
+        name: 'testing',
+    },
+    {
+        type: 'input',
+        message: 'Enter below any testing instructions for your project:',
+        name: 'testingInstr',
+        when: function(answers) {
+            return answers.testing;
+        }
+    },
+
 ];
 
 // TODO: Create a function to write README file
