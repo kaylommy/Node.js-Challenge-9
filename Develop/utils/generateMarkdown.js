@@ -2,9 +2,9 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   // if not a license it will return an empty string.
-  if (!license) {
-    return '';
-  }
+  // if (!license) {
+  //   return '';
+  // }
 
   switch(license) {
     case 'Apache' :
@@ -13,10 +13,8 @@ function renderLicenseBadge(license) {
         return '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)';
         case 'MIT' :
           return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
-          case 'BSD 2-Clause' :
-            return '[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)';
-            case 'BSD 3-Clause' :
-              return '[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)';
+          case 'CC0' :
+            return '[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)';
             default:
               return '';
   }
@@ -24,36 +22,34 @@ function renderLicenseBadge(license) {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (!license) {
-    return '';
-  }
+// function renderLicenseLink(license) {
+//   if (!license) {
+//     return '';
+//   }
 
-  switch(license) {
-    case 'Apache' :
-      return '(https://opensource.org/licenses/Apache-2.0)';
-      case 'ISC' :
-        return '(https://opensource.org/licenses/ISC)';
-        case 'MIT' :
-          return '(https://opensource.org/licenses/MIT)';
-          case 'BSD 2-Clause' :
-            return '(https://opensource.org/licenses/BSD-2-Clause)';
-            case 'BSD 3-Clause' :
-              return '(https://opensource.org/licenses/BSD-3-Clause)';
-            default:
-              return '';
-  }
-}
+//   switch(license) {
+//     case 'Apache' :
+//       return '(https://opensource.org/licenses/Apache-2.0)';
+//       case 'ISC' :
+//         return '(https://opensource.org/licenses/ISC)';
+//         case 'MIT' :
+//           return '(https://opensource.org/licenses/MIT)';
+//           case 'BSD 2-Clause' :
+//             return '(https://opensource.org/licenses/BSD-2-Clause)';
+//             case 'BSD 3-Clause' :
+//               return '(https://opensource.org/licenses/BSD-3-Clause)';
+//             default:
+//               return '';
+//   }
+// }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if(license) {
-    return `${renderLicenseBadge(data.license)}\n${renderLicenseLink(data.license)};
-    `
-  }else {
-    return '';
-  }
+ switch(license) {
+  case 'Apache' :
+    return ''
+ }
 }
 
 // TODO: Create a function to generate markdown for README

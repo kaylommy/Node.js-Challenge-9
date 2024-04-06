@@ -86,7 +86,7 @@ const questions = [
         type: 'list',
         message: 'Select a license',
         name: 'licenses',
-        choices: ['Apache', 'ISC', 'MIT', 'BSD 2-Clause', 'BSD 3-Clause', 'None'],
+        choices: ['Apache', 'ISC', 'MIT', 'CC0', 'None'],
     },
     {
         type: 'confirm',
@@ -121,7 +121,7 @@ const fileName = 'README.md';
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data), err => err ? console.log(err) : console.log('README successfully created!'));
+    fs.writeFile(fileName, data, err => err ? console.log(err) : console.log('README successfully created!'));
 }
 
 // TODO: Create a function to initialize app
