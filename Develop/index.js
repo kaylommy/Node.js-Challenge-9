@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -8,12 +9,24 @@ const questions = [
         type: 'input',
         message: 'What is your Github username?',
         name: 'github',
-        // I added 'validate:' to the questions in this array that are required to be answered for a quality README. Without validate it would just move on to the next question.
+        // I added 'validate:' to the questions in this array that are required to be answered for a quality README. Without validate, if nothing was inputed it would just move on to the next question.
         validate: github => {
             if (github) {
                 return true;
             }else{
                 console.log('Please enter your github username!');
+            }
+        }
+    },
+    {
+        type: 'input',
+        message: 'What is your email?',
+        name: 'email',
+        validate: email => {
+            if(email) {
+                return true;
+            }else {
+                console.log('Please enter your email')
             }
         }
     },
@@ -52,8 +65,8 @@ const questions = [
         message: 'Please enter any installation instructions',
         name: 'installationInst',
         // 'when:' is added so if the question above is answered yes it will run this question if there is a no answer it will skip this question since it will not apply.
-        when: function(answers) {
-            return answers.installQuestion;
+        when: function(data) {
+            return data.installQuestion;
         }
     },
     {
@@ -65,15 +78,15 @@ const questions = [
         type: 'input',
         message: 'Please enter any usage information',
         name: 'usage',
-        when: function(answers) {
-            return answers.usageInfo;
+        when: function(data) {
+            return data.usageInfo;
         }
     },
     {
         type: 'list',
         message: 'Select a license',
         name: 'licenses',
-        choices: ['Apache', 'GNU General Public', 'MIT', 'BSD 2-Clause', 'BSD 3-Clause', 'None'],
+        choices: ['Apache', 'ISC', 'MIT', 'BSD 2-Clause', 'BSD 3-Clause', 'None'],
     },
     {
         type: 'confirm',
@@ -84,8 +97,8 @@ const questions = [
         type: 'input',
         message: 'Add below any contributors to your project',
         name: 'contributors',
-        when: function(answers) {
-            return answers.contributorsQuestion;
+        when: function(data) {
+            return data.contributorsQuestion;
         }
     },
     {
@@ -97,22 +110,28 @@ const questions = [
         type: 'input',
         message: 'Enter below any testing instructions for your project:',
         name: 'testingInstr',
-        when: function(answers) {
-            return answers.testing;
+        when: function(data) {
+            return data.testing;
         }
     },
 
 ];
 
+const fileName = 'README.md'; 
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    // const fileName = 'README.md';
-    fs.appendFile(fileName, JSON.stringify(data, '\t'), err => err ? console.log(err) : console.log('README successfully created!'));
+    fs.writeFile(fileName, JSON.stringify(data), err => err ? console.log(err) : console.log('README successfully created!'));
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    return inquirer.prompt(questions);
+    // inquirer.prompt(questions) refers to the questions array
+    return inquirer.prompt(questions)
+    .then(answers => {
+        const markdownFile = generateMarkdown(answers);
+        writeToFile('README.md', markdownFile);
+    })
 }
 
 // Function call to initialize app
