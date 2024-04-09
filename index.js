@@ -9,7 +9,7 @@ const questions = [
         type: 'input',
         message: 'What is your Github username?',
         name: 'github',
-        // I added 'validate:' to the questions in this array that are required to be answered for a quality README. Without validate, if nothing was inputed it would just move on to the next question.
+        //added 'validate:' to the questions in this array that are required to be answered for a quality README. Without validate, if nothing was inputed it would just move on to the next question.
         validate: github => {
             if (github) {
                 return true;
@@ -55,64 +55,30 @@ const questions = [
         }
     },
     {
-        type: 'confirm',
-        message: 'Are there any installation instructions?',
-        name: 'installQuestion',
-
-    },
-    {
         type: 'input',
         message: 'Please enter any installation instructions',
         name: 'installationInst',
-        // 'when:' is added so if the question above is answered yes it will run this question if there is a no answer it will skip this question since it will not apply.
-        when: function(data) {
-            return data.installQuestion;
-        }
-    },
-    {
-        type: 'confirm',
-        message: 'Any usage information?',
-        name: 'usageInfo',
     },
     {
         type: 'input',
         message: 'Please enter any usage information',
         name: 'usage',
-        when: function(data) {
-            return data.usageInfo;
-        }
     },
     {
         type: 'list',
         message: 'Select a license',
-        name: 'licenses',
+        name: 'license',
         choices: ['Apache', 'ISC', 'MIT', 'CC0', 'None'],
-    },
-    {
-        type: 'confirm',
-        message: 'Are there any contributors to your project?',
-        name: 'contributorsQuestion',
     },
     {
         type: 'input',
         message: 'Add below any contributors to your project',
         name: 'contributors',
-        when: function(data) {
-            return data.contributorsQuestion;
-        }
-    },
-    {
-        type: 'confirm',
-        message: 'Any testing instructions?',
-        name: 'testing',
     },
     {
         type: 'input',
         message: 'Enter below any testing instructions for your project:',
         name: 'testingInstr',
-        when: function(data) {
-            return data.testing;
-        }
     },
 
 ];
@@ -130,7 +96,7 @@ function init() {
     return inquirer.prompt(questions)
     .then(answers => {
         const markdownFile = generateMarkdown(answers);
-        writeToFile('README.md', markdownFile);
+        writeToFile('./output/README.md', markdownFile);
     })
 }
 

@@ -1,10 +1,6 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  // if not a license it will return an empty string.
-  // if (!license) {
-  //   return '';
-  // }
 
   switch(license) {
     case 'Apache' :
@@ -16,39 +12,22 @@ function renderLicenseBadge(license) {
           case 'CC0' :
             return '[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)';
             default:
-              return '';
+              return 'The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.';
   }
 }
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-// function renderLicenseLink(license) {
-//   if (!license) {
-//     return '';
-//   }
-
-//   switch(license) {
-//     case 'Apache' :
-//       return '(https://opensource.org/licenses/Apache-2.0)';
-//       case 'ISC' :
-//         return '(https://opensource.org/licenses/ISC)';
-//         case 'MIT' :
-//           return '(https://opensource.org/licenses/MIT)';
-//           case 'BSD 2-Clause' :
-//             return '(https://opensource.org/licenses/BSD-2-Clause)';
-//             case 'BSD 3-Clause' :
-//               return '(https://opensource.org/licenses/BSD-3-Clause)';
-//             default:
-//               return '';
-//   }
-// }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
  switch(license) {
   case 'Apache' :
-    return ''
+    return '“License” shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document. “Licensor” shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.';
+    case 'ISC' :
+      return 'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.';
+      case 'MIT' :
+        return 'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.';
+        case 'CC0' :
+        return ''
  }
 }
 
@@ -71,9 +50,9 @@ function generateMarkdown(data) {
   ## Usage
   ${data.usage}
   ## Contributors
-  ${data.contributing}
+  ${data.contributors}
   ## Tests
-  ${data.tests}
+  ${data.testingInstr}
           
   
   ## License
