@@ -5,19 +5,19 @@
   
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Credits](#credits)
+  - [Contributors](#contributors)
   - [License](#license)
   
   ## Description
-  The purpose of this project is to generate a README for your project using inquirer.
+  This is a README generator created with inquirer.
   ## Installation
-  undefined
+  run 'npm i inquirer@8.2.4' in the terminal
   ## Usage
-  Install inquirer then run node index in the terminal
+  Used to creat README files for your projects.
   ## Contributors
-  myself
+  Kayla Freeman
   ## Tests
-  run node index
+  run 'node index' in the terminal
           
   
   ## License

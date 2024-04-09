@@ -40,13 +40,13 @@ function generateMarkdown(data) {
   
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Credits](#credits)
+  - [Contributors](#contributors)
   - [License](#license)
   
   ## Description
   ${data.description}
   ## Installation
-  ${data.installation}
+  ${data.installationInst}
   ## Usage
   ${data.usage}
   ## Contributors
